@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+/* estilo de fuente para el texto "Galeria Jujuy" */
+.anton-sc-regular {
+    font-family: "Anton SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.manrope{
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+
+  /*Estilo para el section de promociones*/
+.row-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+}
+
+.contenedor-carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carousel {
+    width: 100%;
+    height: 50vh;
+}
+
+.carousel-caption{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carousel-caption h4,p{
+  text-align: center;
+  width: max-content;
+  color: white;
+  background-color: black;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+}
+
+h2{
+    text-align: center;
+}
+
+
+/* Seccion de Locales */
+.contenedor-cards {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    
+    gap: 2px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.container{
+    padding: 0 10%;
+  }
+  .encabezado{
+    text-shadow: 8px 2px 4px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .card {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    box-shadow: 10px 10px 12px 3px rgba(0, 0, 0, 0.5);
+    height: 47%;
+    transition: transform 0.3s ease;
+    width: 100%;
+    height: auto;
+    /* background-color: rgb(255, 240, 206); */
+  }
+  
+  .card > h5{
+    text-align: end;
+    padding: 2%;
+  
+  }
+  
+  .card:hover {
+    transform: scale(1.02);
+    z-index: 1;
+  }
+  
+  .card-img{
+    width: 100%;
+    height: 60%;
+  }
+  
+  .card-img img {
+    object-fit: contain;
+    height: 100%;
+  }
+  
+  .card-body{
+    height: 30%;
+    overflow: hidden;
+  }
+  
+  .card-body p{
+    /* Establece la altura máxima que queremos que ocupe el párrafo */
+    max-height: 3.5em; /* 2 líneas con un poco de espacio adicional */
+    /* Ajusta la altura de línea para que se muestren exactamente dos líneas */
+    line-height: 1.25em; /* Esto puede variar dependiendo del tamaño de fuente y del espaciado deseado */
+    /* Configura el desbordamiento para que el texto que exceda la altura máxima se oculte */
+    overflow: hidden;
+    /* Agrega un efecto de truncamiento con puntos suspensivos (...) al final del texto truncado */
+    text-overflow: ellipsis;
+    /* Garantiza que el texto no se envuelva en una nueva línea */
+    white-space: normal;
+    /* Forzar el corte del texto en la última línea */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Número de líneas a mostrar */
+    -webkit-box-orient: vertical;
+  }
+  
+
+/* Seccion de ubicacion */
+.section-ubicacion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.card-direccion{
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+}
+
+.direccion-texto{
+    width: 50%;
+    border: solid 2px white;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 30px 5%;
+    background-color: rgb(250, 195, 43);
+}
+
+.direccion-ubicacion{
+    width: 50%;
+    border: solid 2px white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.direccion-ubicacion iframe{
+    width: 100%;
+    height: 100%;
+}

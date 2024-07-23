@@ -1,0 +1,84 @@
+<div class="my-5 mx-5">
+    <div class="row">
+        <h4>Filtrar por: </h4>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="input-group">
+                <span class="input-group-text">Habilitado:</span>
+                <select class="form-select" id="habilitado" name="habilitado" [(ngModel)]="habilitadoAux"
+                    (change)="verLocalesFiltros()">
+                    <option [ngValue]="undefined" selected>Cualquiera</option>
+                    <option [ngValue]="true">Sí</option>
+                    <option [ngValue]="false">No</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="input-group">
+                <span class="input-group-text">Alquilado:</span>
+                <select class="form-select" id="alquilado" name="alquilado" [(ngModel)]="alquiladoAux"
+                    (change)="verLocalesFiltros()">
+                    <option [ngValue]="undefined" selected>Cualquiera</option>
+                    <option [ngValue]="true">Sí</option>
+                    <option [ngValue]="false">No</option>
+                </select>
+            </div>
+        </div>
+        <!-- <div class="col-lg-3 col-md-6 col-sm-12">
+            <button type="button" class="btn btn-outline-dark" (click)="verLocalesFiltros()">Filtrar</button>
+        </div> -->
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <button type="button" class="btn btn-outline-success" (click)="verLocales()">Mostrar Todos</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="row justify-content-center m-0 p-0">
+    <div class="col-12 col-sm-12 col-md-11 contenedor">
+
+        <h1>Listado de locales</h1>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary my-3" (click)="agregarLocal()"> AGREGAR </button>
+        </div>
+        <table class="table table-hover table table-striped table-info">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">N° de Local</th>
+                    <th scope="col">Superficie</th>
+                    <th scope="col">Alquilado</th>
+                    <th scope="col">Costo del Mes</th>
+                    <th scope="col">Habilitado</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Acción</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let locales of locales; let i = index">
+
+                    <th class="align-middle">{{i+1}}</th>
+                    <td class="align-middle">{{locales.numeroLocal}}</td>
+                    <td class="align-middle">{{locales.superficie}} m²</td>
+                    <td class="align-middle">{{locales.alquilado | siNo}}</td>
+                    <td class="align-middle">{{locales.costoMes | currency: 'ARS ':'symbol':'1.1-2'}}</td>
+                    <td class="align-middle">{{locales.habilitado | siNo}}</td>
+                    <td> <img [src]="locales.imagen" alt="imagen de local" width="100px" height="100px"> </td>
+                    <td class="align-middle">
+                        <div class="btn-lista-promocion">
+                            <button type="button" class="btn btn-warning m-md-2" (click)="modificarLocal(locales._id)">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger m-md-2" (click)="eliminarLocal(locales._id)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

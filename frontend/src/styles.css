@@ -1,0 +1,15 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor {
+    min-height: 70vh;
+}

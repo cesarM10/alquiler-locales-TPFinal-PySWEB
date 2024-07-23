@@ -1,0 +1,73 @@
+<div class="row justify-content-center m-0 p-0">
+    <div class="col-12 col-sm-12 col-md-7 contenedor">
+        <h1>Registro de alquileres de local</h1>
+        <form class="formulario" #formAlquiler="ngForm">
+            <div class="encabezado">
+                <h5>Nuevo alquiler</h5>
+            </div>
+            <div class="contenedor-formulario p-3">
+                <p class="text-danger"[hidden]="!formAlquiler.invalid && alquiler.usuario.nombre !='' && alquiler.local.numeroLocal != ''">*Todos los campos son obligatorios</p>
+                <div class="mb-3">
+                    <label for="propietario" class="form-label">Propietario</label>
+                    <select class="form-select" id="propietario" name="propietario" [(ngModel)]="alquiler.usuario">
+                        <option *ngIf="accion == 'update'" [ngValue]="alquiler.usuario">{{alquiler.usuario.apellido}},
+                            {{alquiler.usuario.nombre}}</option>
+                        <option *ngFor="let p of propietarios" [ngValue]="p">{{p.apellido}},{{p.nombre}}</option>
+                    </select>
+                </div>
+                <div class="mb-3" *ngIf="accion == 'new' || accion == 'update'">
+                    <label for="nrolocal" class="form-label">Número de local</label>
+                    <select class="form-select" id="nrolocal" name="nrolocal" [(ngModel)]="alquiler.local"
+                        [disabled]="accion == 'update' ">
+                        <option *ngIf="accion == 'update'" [ngValue]="alquiler.local">{{alquiler.local.numeroLocal}}
+                        </option>
+                        <option *ngFor="let l of locales" [ngValue]="l">{{l.numeroLocal}}</option>
+
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="plazo-mes" class="form-label">Plazo del mes para pagar</label>
+                    <input type="number" class="form-control" id="plazo-mes" name="plazo-mes"
+                        placeholder="Ingrese el plazo del mes." [(ngModel)]="alquiler.plazomes" required
+                        #plazoMesAlquiler="ngModel">
+                </div>
+                <div class="alert alert-danger m-2" [hidden]="plazoMesAlquiler.valid || plazoMesAlquiler.pristine">
+                    Plazo del mes obligatorio.
+                </div>
+                <div class="mb-3">
+                    <label for="costomes" class="form-label">Costo del alquiler</label>
+                    <input type="number" class="form-control" id="costomes" name="costomes"
+                        placeholder="Ingrese valor de superficie." [(ngModel)]="alquiler.costoalquiler" required
+                        #costoAlquiler="ngModel">
+                </div>
+                <div class="alert alert-danger m-2" [hidden]="costoAlquiler.valid || costoAlquiler.pristine">
+                    Costo del alquiler obligatorio.
+                </div>
+
+                <div class="mb-3">
+                    <label for="fecha-alquiler" class="form-label">Fecha de Alquiler</label>
+                    <input type="date" class="form-control" id="fecha-alquiler" name="fecha-alquiler"
+                        placeholder="Ingrese el nombre" [(ngModel)]="alquiler.fechaAlquiler" required
+                        #fechaAlquiler="ngModel">
+                        <div class="alert alert-danger m-2" [hidden]="fechaAlquiler.valid || fechaAlquiler.pristine">
+                            Fecha del alquiler obligatorio.
+                        </div>
+                </div>
+
+                <div class="boton-formulario">
+                    <button *ngIf="accion == 'new' && alquiler.local.numeroLocal != ''&& alquiler.usuario.nombre !=''"
+                        type="submit" class="btn btn-success m-md-2" [disabled]="formAlquiler.invalid"
+                        (click)="crearAlquiler()">Registrar</button>
+                    <button *ngIf="accion == 'update'" type="submit" class="btn btn-warning m-md-2"
+                        [disabled]="formAlquiler.invalid" (click)="actualizarAlquiler()">Actualizar</button>
+
+                    <button type="button" class="btn btn-primary m-md-2" (click)="irALista()">Ir a lista
+                        Alquileres</button>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+
+</div>

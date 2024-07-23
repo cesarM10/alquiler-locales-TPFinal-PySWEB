@@ -1,0 +1,97 @@
+<div class="row justify-content-center m-0 p-0">
+    <div class="col-12 col-sm-12 col-md-7 contenedor">
+        <h1>Crear Locales</h1>
+        <form class="formulario" #formLocal="ngForm">
+            <div class="encabezado">
+                <h5>Registrar Local</h5>
+            </div>
+            <div class="contenedor-formulario p-3">
+                <p class="text-danger"[hidden]="!formLocal.invalid && !validarCampos()">*Todos los campos son obligatorios</p>
+            <div class="mb-3">
+                <label for="numero" class="form-label">Número de Local</label>
+                <input type="number" class="form-control" id="numero" name="numero" placeholder="Ingrese número de Local"
+                    [(ngModel)]="local.numeroLocal" required #nrolocal="ngModel" autocomplete="off">
+                    <div class="alert alert-danger m-2" [hidden]="nrolocal.valid || nrolocal.pristine">
+                        Campo obligatorio. Número de local.
+                    </div>
+            </div>
+            <div class="mb-3">
+                <label for="superficie" class="form-label">Superficie</label>
+                <input type="number" class="form-control" id="superficie" name="superficie"
+                    placeholder="Ingrese Superficie Local" [(ngModel)]="local.superficie" required #suplocal="ngModel" autocomplete="off"
+                    pattern="^[1-9]\d*$">
+                <div class="alert alert-danger m-2" [hidden]="suplocal.valid || suplocal.pristine">
+                    Campo obligatorio. Superficie del local.
+                </div>
+                <div class="alert alert-danger m-2" [hidden]="suplocal.control.value > 0 || suplocal.pristine">
+                    El número debe ser mayor que cero.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="mes" class="form-label">Costo Mes</label>
+                <input type="number" class="form-control" id="mes" name="mes" placeholder="Ingrese costo del Mes"
+                    [(ngModel)]="local.costoMes" required #costomeslocal="ngModel" autocomplete="off"
+                    pattern="^[1-9]\d*$">
+                <div class="alert alert-danger m-2" [hidden]="costomeslocal.valid || costomeslocal.pristine">
+                    Campo obligatorio. Costo del local.
+                </div>
+                <div class="alert alert-danger m-2" [hidden]="costomeslocal.control.value > 0 || costomeslocal.pristine">
+                    El número debe ser mayor que cero.
+                </div>
+            </div>
+
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" [(ngModel)]="local.habilitado" id="habilitado"
+                    name="habilitado">
+
+                <label class="form-check-label" for="habilitado">Habilitado</label>
+            </div>
+<!-- 
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" [(ngModel)]="local.alquilado" id="alquilado"
+                    name="alquilado">
+
+                <label class="form-check-label" for="alquilado">Alquilado</label>
+            </div> -->
+
+            <!-- <div class="mb-3">
+                <label for="img" class="form-label">Imagen</label>
+                <input type="text" class="form-control" id="img" name="img" placeholder="Ingrese una url de la imagen"
+                    [(ngModel)]="local.imagen" required #imagenlocal="ngModel" >
+                <div class="alert alert-danger m-2" [hidden]="imagenlocal.valid || imagenlocal.pristine">
+                        Campo obligatorio. Imagen del local.
+                </div>
+            </div> -->
+
+            <div class="mb-3">
+                <label for="urlimagen" class="form-label fw-semibold">IMAGEN</label>
+                <div>
+                    <input type="file" name="urlimagen" id="urlimagen" accept="image/*"
+                        class="form-control-file d-block" (change)="seleccionImg($event)"  ngModel #urlimagen="ngModel"
+                        required />
+                </div>
+                <div *ngIf="urlimagen.invalid && (urlimagen.dirty || urlimagen.touched)"
+                    class="alert alert-danger rounded-0 mt-1" >
+                    Campo obligatorio. Imagen del local.
+                </div>
+            </div>
+
+
+            <div class="boton-formulario">
+                <button *ngIf="accion == 'new'" class="btn btn-success m-md-2" type="submit" 
+                [disabled]="formLocal.invalid || validarCampos()"(click)="crearLocal()"> Guardar</button>
+                <button *ngIf="accion == 'update'" class="btn btn-success m-md-2" type="submit" 
+                [disabled]="formLocal.invalid" (click)="modificarLocal()"> Actualizar</button>
+                <button class="btn btn-primary m-md-2" type="submit"  (click)="volverLocal()">
+                   Ir a lista</button>
+            </div>
+
+        </div>
+        </form>
+
+
+
+    </div>
+
+</div>

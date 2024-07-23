@@ -1,0 +1,32 @@
+.contenedor {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card{
+  width: 100%;
+}
+
+#graficoLocales {
+  width: 100%;
+  margin: 0 auto;
+}
+
+#graficoNovedades {
+  width: 100%;
+  margin: 0 auto;
+}
+
+#graficoPagosMensuales {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

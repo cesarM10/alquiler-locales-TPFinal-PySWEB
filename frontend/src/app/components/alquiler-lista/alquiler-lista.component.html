@@ -1,0 +1,47 @@
+<div class="row justify-content-center p-0 m-0 mt-5">
+    <div class="col-12 col-sm-12 col-md-11 contenedor">
+        <h1>Listado de Alquileres</h1>
+        <div class="col-md-4" *ngIf="hasRole(rol.ADMINISTRATIVO)">
+            <button type="button" class="btn btn-primary my-3"(click)="agregarAlquiler()"> AGREGAR </button>
+        </div>
+        <table class="table table-hover table table-striped table-primary">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">N° de Local</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Costo Alquiler</th>
+                    <th scope="col">Mes Actual</th>
+                    <th scope="col">Estado Pago</th>
+                    <th scope="col">Fecha Alquiler</th>
+                    <th scope="col">Plazo mes</th>
+                    <th scope="col">Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of cuotaAlquiler; let i = index;">
+                    <th class="align-middle">{{i+1}}</th>
+                    <td class="align-middle">{{a.alquiler.local.numeroLocal}}</td>
+                    <td class="align-middle">{{a.alquiler.usuario.apellido}}, {{a.alquiler.usuario.nombre}}</td>
+                    <td class="align-middle">{{a.alquiler.costoalquiler}}</td>
+                    <td class="align-middle">{{validarMesPago(a)}}</td>
+                    <td class="align-middle">{{validarEstados(a)}}</td>
+                    <td class="align-middle">{{a.alquiler.fechaAlquiler | date: "dd-MM-yyyy": "GMT"}}</td>
+                    <td class="align-middle">{{a.alquiler.plazomes}}</td>
+                    <td>
+                        <div class="btn-lista-alquiler" *ngIf="hasRole(rol.ADMINISTRATIVO)">
+                            <button type="button" class="btn btn-danger m-md-2" (click)="eliminarAlquiler(a.alquiler._id)">Eliminar</button>
+                            <button type="button" class="btn btn-warning m-md-2"(click)="modificarAlquiler(a.alquiler._id)">Modificar</button>
+                        </div>
+                        <div class="btn-lista-alquiler" *ngIf="hasRole(rol.PROPIETARIO)">
+                            <button type="button" class="btn btn-success m-md-2" (click)="pagarAlquiler(a)">Pagar Total</button>
+                        </div>
+                        <div class="btn-lista-alquiler" *ngIf="hasRole(rol.ADMINISTRATIVO)">
+                            <button type="button" class="btn btn-success m-md-2" (click)="pagarAlquilerAdministrativo(a)">Registrar Pago</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

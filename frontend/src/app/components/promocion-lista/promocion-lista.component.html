@@ -1,0 +1,55 @@
+<div class="col-lg-6 col-md-6 col-sm-12 m-5">
+    <h4>Ordenar por:</h4>
+    <div class="input-group">
+        <span class="input-group-text">Fecha de finalización:</span>
+        <select class="form-select" id="sortOrder" [(ngModel)]="sortOrder" (change)="onSortOrderChange(sortOrder)">
+            <option value="">Sin ordenar</option>
+            <option value="asc">Ascendente</option>
+            <option value="desc">Descendente</option>
+        </select>
+    </div>
+</div>
+
+<div class="row justify-content-center m-0 p-0">
+    <div class="col-12 col-sm-12 col-md-11 contenedor">
+        <h1>Listado de promociones</h1>
+        <div class="col-md-4" *ngIf="hasRole('propietario')">
+            <button type="button" class="btn btn-primary my-3" (click)="agregarPromocion()"> AGREGAR </button>
+        </div>
+        <table class="table table-hover table table-striped table-primary">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">N° de Local</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Fecha de Inicio</th>
+                    <th scope="col">Fecha de Fin</th>
+                    <th scope="col">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of promociones">
+
+                    <th>#</th>
+                    <td>{{p.local.numeroLocal}}</td>
+                    <td>{{p.descripcion}}</td>
+                    <td>{{p.fechaInicio | date: "dd-MM-yyyy": "GMT"}}</td>
+                    <td>{{p.fechaFin | date: "dd-MM-yyyy": "GMT"}}</td>
+                    <td>
+                        <div class="btn-lista-promocion" *ngIf="hasRole('propietario')">
+                            <button type="button" class="btn btn-warning m-md-2"
+                                (click)="modificarPromocion(p._id)">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger m-md-2"
+                                (click)="eliminarPromocion(p._id)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript" src="https://connect.facebook.net/en_US/sdk.js"></script>

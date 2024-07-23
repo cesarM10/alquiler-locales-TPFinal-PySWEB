@@ -1,0 +1,16 @@
+a{
+    color: rgb(250, 250, 250);
+}
+
+/* .contenedor-header{
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(7,191,255,1) 89%);
+} */
+
+.contenedor-header{
+    background-color:rgb(232, 141, 103);
+}
+
+.dropdown-menu{
+    background-color:rgb(232, 141, 103);
+}

@@ -1,0 +1,62 @@
+
+<div class="row mx-5 mt-5">
+    <h4>Filtrar por: </h4>
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+        <div class="input-group">
+            <span class="input-group-text">Estado:</span>
+            <select class="form-select" id="idrol" name="rol" [(ngModel)]= "estadoAux" (change)= "obtenerNovedadesFiltro()">
+                <option value="" selected>Todos</option>       
+                <option value= "Pendiente">Pendiente</option>
+                <option value= "Procesado">Procesado</option>
+            </select>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <button type="button" class="btn btn-outline-success" (click)=" obtenerNovedades()">Mostrar Todos</button>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row justify-content-center m-3 ">
+    <div class="col-12 col-sm-12 col-md-11 contenedor">
+        <h1>Listado de novedades</h1>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary my-3"(click)="agregarNovedad()"> AGREGAR </button>
+        </div>
+        <table class="table table-hover table table-striped table-primary">
+            <thead>
+                <tr>
+                    <th class="col">#</th>
+                    <th scope="col">N° de Local</th>
+                    <th scope="col">Registró Novedad</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let n of novedades; let i = index " class="text-bg-danger">
+
+                    <th class="align-middle">{{i+1}}</th>
+                    <td class="align-middle">{{n.local.numeroLocal}}</td>
+                    <td class="align-middle">{{n.usuario.apellido}}, {{n.usuario.nombre}}</td>
+                    <td class="align-middle">{{n.texto}}</td>
+                    <td class="align-middle">{{n.estado}}</td>
+                    <td>
+                        <div class="btn-lista-promocion" *ngIf="hasRole(rol.ADMINISTRATIVO) || hasRole(rol.DUENIO)">
+                            <button type="button" class="btn btn-danger m-md-2" (click)="eliminarNovedad(n._id)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning m-md-2"(click)="modificarNovedad(n._id)">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

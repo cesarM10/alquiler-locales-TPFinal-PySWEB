@@ -1,0 +1,31 @@
+.contenedor{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulario {
+    width: 80%;
+    border: solid 5px rgb(0, 105, 137);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.encabezado {
+    width: 100%;
+    background-color: rgb(0, 105, 137);
+    height: 2em;
+}
+.encabezado h5 {
+    text-align: center;
+    color: white;
+}
+
+.boton-formulario {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

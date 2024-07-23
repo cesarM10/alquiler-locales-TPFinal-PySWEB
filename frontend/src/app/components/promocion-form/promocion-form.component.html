@@ -1,0 +1,63 @@
+<div class="row justify-content-center m-0 p-0">
+    <div class="col-12 col-sm-12 col-md-7 contenedor">
+        <h1>Crear nueva promoción</h1>
+        <form class="formulario">
+            <div class="encabezado">
+                <h5>Registrar promoción</h5>
+            </div>
+            <div class="contenedor-formulario p-3">
+                <div class="mb-3">
+                    <label for="local" class="form-label">Locales</label>
+                    <select class="form-select" id="local" name="local" [(ngModel)]="promocion.local">
+
+                        <option *ngIf="accion == 'update'" [ngValue]="promocion.local" selected>{{promocion.local.numeroLocal}}</option>
+                        <option *ngFor="let alquiler of alquileres" [ngValue]="alquiler.local">{{alquiler.local.numeroLocal}}</option>
+
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <input type="text" class="form-control" id="descripcion" name="descripcion"
+                        placeholder="Ingrese una descripción" [(ngModel)]="promocion.descripcion">
+                </div>
+                <div class="mb-3">
+                    <label for="fecha-inicio" class="form-label">Fecha de Inicio</label>
+                    <input type="date" class="form-control" id="fecha-inicio" name="fecha-inicio"
+                        placeholder="Ingrese el apellido" [(ngModel)]="promocion.fechaInicio">
+                </div>
+                <div class="mb-3">
+                    <label for="fecha-fin" class="form-label">Fecha de fin</label>
+                    <input type="date" class="form-control" id="fecha-fin" name="fecha-fin"
+                        placeholder="Ingrese el nombre" [(ngModel)]="promocion.fechaFin">
+                </div>
+                <!-- <div class="mb-3">
+                    <label for="imagen" class="form-label">Imagen</label>
+                    <input type="text" class="form-control" id="imagen" name="imagen"
+                        placeholder="Ingrese la url de una imagen" [(ngModel)]="promocion.imagen">
+                </div> -->
+                <div class="mb-3">
+                    <label for="urlimagen" class="form-label fw-semibold">IMAGEN</label>
+                    <div>
+                        <input type="file" name="urlimagen" id="urlimagen" accept="image/*"
+                            class="form-control-file d-block" (change)="seleccionImg($event)"  ngModel #urlimagen="ngModel"
+                            required />
+                    </div>
+                    <div *ngIf="urlimagen.invalid && (urlimagen.dirty || urlimagen.touched)"
+                        class="alert alert-danger rounded-0 mt-1" >
+                        Campo obligatorio. Imagen del local.
+                    </div>
+                </div>
+
+                <div class="boton-formulario">
+                    <button *ngIf="accion == 'new'" type="submit" class="btn btn-success m-md-2" (click)="crearPromocion()">Registrar</button>
+                    <button *ngIf="accion == 'update'"type="submit" class="btn btn-warning m-md-2" (click)="modificarPromocion()">Modificar</button>
+
+                    <button type="button" class="btn btn-primary m-md-2"(click)="irALista()">Ir a lista Promociones</button>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+
+</div>

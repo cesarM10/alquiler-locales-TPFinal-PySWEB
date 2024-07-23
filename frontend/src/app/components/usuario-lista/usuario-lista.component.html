@@ -1,0 +1,80 @@
+<div class="row justify-content-center m-0 p-0 my-5">
+    <div class="col-12 col-sm-12 col-md-11">
+        <h4>Filtrar por:</h4>
+        <div class="row m-0 p-0">
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text">Filtrar por Rol</span>
+                    <select class="form-select" id="idrol" name="rol" [(ngModel)]="rolAux"
+                        (change)="getUsuarios(apellidoAux,rolAux,dniAux)">
+                        <option value="" selected>Todos</option>
+                        <option *ngFor="let r of roles" [ngValue]="r.nombre">{{r.nombre}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text">Apellido</span>
+                    <input name="apellido" type="text" class="form-control" id="idapellido" [(ngModel)]="apellidoAux">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text">DNI</span>
+                    <input name="dni" type="text" class="form-control" id="iddni" [(ngModel)]="dniAux" maxlength="8">
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 mb-3">
+                <button type="button" class="btn btn-outline-dark"
+                    (click)="getUsuarios(apellidoAux,rolAux,dniAux)">Buscar</button>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 mb-3">
+                <button type="button" class="btn btn-outline-success" (click)="buscarYLimpiar()">Mostrar Todos</button>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<div class="row justify-content-center m-0 p-0">
+    <div class="col-12 col-sm-12 col-md-11 contenedor">
+
+        <h1>Listado de Usuarios</h1>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary my-3" (click)="agregarUsuario()"> AGREGAR </button>
+        </div>
+        <table class="table table-hover table table-striped table-primary">
+            <thead class="tabla-encabezado">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Apellido y Nombre</th>
+                    <th scope="col">DNI</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usuario of usuarios; let i = index ">
+
+                    <th>{{i + 1}}</th>
+                    <td>{{usuario.rol.nombre}}</td>
+                    <td>{{usuario.apellido}}, {{usuario.nombre}}</td>
+                    <td>{{usuario.dni}}</td>
+                    <td>{{usuario.email}}</td>
+                    <td>{{usuario.telefono}}</td>
+                    <td>
+                        <div class="btn-lista-promocion">
+                            <button type="button" class="btn btn-warning m-md-2" (click)="modificarUsuario(usuario)">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger m-md-2" (click)="eliminarUsuario(usuario)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

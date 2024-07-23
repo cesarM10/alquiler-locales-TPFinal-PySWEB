@@ -1,0 +1,31 @@
+<div class="row justify-content-center m-3 ">
+    <div class="col-12 col-sm-12 col-md-11 contenedor">
+        <h1>Historial de Pagos</h1>
+        <table class="table table-hover table table-striped table-primary">
+            <thead>
+                <tr>
+                    <th class="col">#</th>
+                    <th scope="col">N° de Local</th>
+                    <th scope="col">Propietario</th>
+                    <th scope="col">Monto de Pago</th>
+                    <th scope="col">Mes de Pago</th>
+                    <th scope="col">Año de Pago</th>
+                    <th scope="col">Metodo de Pago</th>
+                    <th scope="col">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pago of cuotaAlquileres; let i = index " class="text-bg-danger">
+                    <th class="align-middle">{{i+1}}</th>
+                    <td class="align-middle">{{pago.alquiler.local.numeroLocal}}</td>
+                    <td class="align-middle">{{pago.alquiler.usuario.apellido}}, {{pago.alquiler.usuario.nombre}}</td>
+                    <td class="align-middle">{{pago.cuota.montoPago | currency: 'ARS ':'symbol':'1.1-2'}}</td>
+                    <td class="align-middle">{{convertMesPago(pago.cuota.mesPago)}}</td>
+                    <td class="align-middle">{{pago.cuota.anioPago}}</td>
+                    <td class="align-middle">{{pago.pago[0].metodoPago}}</td>
+                    <td class="align-middle">{{pago.cuota.estadoPago}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>1

@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-center align-items-center" id="body">
+<div class="login bg-transparent">
+    <form action="">
+      <h1>Login</h1>
+      <div class="input-box">
+        <input name="usuario" type="text" placeholder="Usuario" [(ngModel)]="email" required>
+        <i class="bx bxs-user"></i>
+      </div>
+      <div class="input-box">
+        <input name="contraseña" type="password" placeholder="Contraseña" [(ngModel)]="password" required>
+        <i class="bx bxs-lock-alt"></i>
+      </div>
+      <button type="submit" class="btn btn-success" (click)="inicioSesion()" [disabled]="btnClick">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" [hidden]="!btnClick"></span>
+        Entrar
+      </button>
+      <div class="register-link">
+        <p>
+          <a href="./index.html">Volver al incio</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
